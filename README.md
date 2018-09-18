@@ -11,7 +11,7 @@ OBS: Caso queira incluir mais algumas instalações ou configurações fique a v
 2- Infra as code:
 
 Desenvolva um código para criar uma parte da infra que utilizamos na Ciclic. A idéia é criar um cluster ECS, pelo menos um service e uma task. Se achar necessário pode incluir
-outros elementos de infraestrutura como VPC, subnets, Auto scale group e launch configuration.
+outros elementos de infraestrutura como VPC, subnets, Auto Scaling Group e launch configuration.
 
 OBS: Pode ser tanto em Terraform quanto em Cloudformation.
 
