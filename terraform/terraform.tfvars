@@ -1,0 +1,8 @@
+profile               = "default"
+bucket                = "ciclic.tfstate"
+region                = "us-east-1"
+vpc_cidr              = "172.18.64.0/18"
+public_subnet_b_cidr  = "172.18.64.0/22"
+public_subnet_c_cidr  = "172.18.68.0/22"
+private_subnet_b_cidr = "172.18.72.0/21"
+private_subnet_c_cidr = "172.18.80.0/21"
