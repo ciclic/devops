@@ -11,6 +11,7 @@ RUN mkdir -p \
         /ciclic/apps \
         /ciclic/scripts
 
+# Install default packages
 RUN yum -y update && yum install -y \
         curl \
         wget \

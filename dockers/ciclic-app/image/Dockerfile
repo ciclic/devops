@@ -1,4 +1,5 @@
-FROM ciclic-base
+FROM 00000000000.dkr.ecr.us-east-1.amazonaws.com/ciclic/base:latest
+LABEL maintainer="Rafael Ramos <rafasoul@msn.com>"
 
 USER root
 
