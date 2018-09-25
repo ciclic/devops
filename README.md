@@ -1,45 +1,88 @@
-# Teste para vaga de DevOps Ciclic
+# Teste Ciclic - Rafael Navas Bielawski
+Criação de uma stack para deploy de aplicação node (api) utilizando ECS, ECR, CodePipeline e Git com Terraform
 
-1- Dockerfile:
+## Arquitetura 
 
-Crie um ou mais Dockerfile de acordo com nossa stack atual: 
-CentOS 7
-Java 8 ou 9
+![Arch](.github/images/ECS-Arquitetura.png)
 
-OBS: Caso queira incluir mais algumas instalações ou configurações fique a vontade! ;)
+## Deploy Pipeline
 
-2- Infra as code:
-
-Desenvolva um código para criar uma parte da infra que utilizamos na Ciclic. A idéia é criar um cluster ECS, pelo menos um service e uma task. Se achar necessário pode incluir
-outros elementos de infraestrutura como VPC, subnets, Auto Scaling Group e launch configuration.
-
-OBS: Pode ser tanto em Terraform quanto em Cloudformation.
-
-Links de suporte:
-
-https://www.terraform.io/docs/providers/aws/r/ecs_service.html
+![Steps](.github/images/pipeline-demo.png)
 
 
-https://www.terraform.io/docs/providers/aws/r/ecs_cluster.html
+## Variáveis a alterar
+
+Aquivo `variables.tf` conta Github, Repo e proprietário, Load Balancer portas e preferências do cluster. 
+
+```hcl
+# Customize the Cluster Name
+variable "cluster_name" {
+  description = "ECS Cluster Name"
+  default     = "ciclic"
+}
+
+# Customize your ECR Registry Name
+variable "app_repository_name" {
+  description = "ECR Repository Name"
+  default     = "ciclic"
+}
+
+###### APPLICATION OPTIONS  ######
+variable "container_name" {
+  description = "Container app name"
+  default     = "micro-api"
+}
+```
+
+Variáveis do repositório Github da aplicação. 
+
+```hcl
+# Github Repository Owner
+variable "git_repository_owner" {
+  description = "Github Repository Owner"
+  default     = "rafabiela"
+}
+
+# Github Repository Project Name
+variable "git_repository_name" {
+  description = "Project name on Github"
+  default     = "teste-ciclic-app"
+}
+
+# Default Branch
+variable "git_repository_branch" {
+  description = "Github Project Branch"
+  default     = "master"
+}
+```
+
+## Configuração dos steps de build do app
+
+ `modules/pipeline/templates/buildspec.yml`. 
 
 
-https://www.terraform.io/docs/providers/aws/r/ecr_repository.html
+## Deploy
+
+### Github Access Token
+
+Necessário TOKEN da conta do Github para hook e monitoração da branch 
+
+```bash
+export GITHUB_TOKEN=YOUR_TOKEN
+``` 
+
+## Teste da aplicação
+
+```bash
+curl < url gerada no alb >/ -i
+```
+ex: `curl ciclic-alb-1358103402.us-east-1.elb.amazonaws.com/ -i`
 
 
-https://www.terraform.io/docs/providers/aws/r/ecs_task_definition.html
+#### Referencias que utilizei
 
+* [Easy deploy your Docker applications to AWS using ECS and Fargate](https://thecode.pub/easy-deploy-your-docker-applications-to-aws-using-ecs-and-fargate-a988a1cc842f)
 
-https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-cluster.html
-https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-service.html
-https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-taskdefinition.html
-https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecr-repository.htm
+* [ECS Terraform - By alex](https://github.com/alex/ecs-terraform)
 
-3-  Stack de ferramentas:
-
-Desenhe/descreva um ciclo de CI/CD desde o backlog até o deploy da aplicação, incluindo ferramentas de mercado de infra as code, build, continuous integration, deploy, gestão de dependências e operações (monitoração e logs). Justifique a escolha das ferramentas que achar mais relevantes.
-
-
-#Processo de submissão
-
-Fazer um fork desse repositório e nos mandar um pull request.
-Nos dar acesso ao seu repositório no github, bitbucket ou gitlab. Email:juliana@ciclic.com.br
+* [Terraform-ECS by arminc](https://github.com/arminc/terraform-ecs)
