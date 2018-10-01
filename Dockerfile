@@ -8,4 +8,4 @@ RUN mvn package
 
 FROM jboss/wildfly:14.0.1.Final
 
-COPY --from=build target/devops-test-0.0.1-SNAPSHOT.war /opt/jboss/wildfly/standalone/deployments/
+COPY --from=build target/devops-test-0.0.1-SNAPSHOT.war /opt/jboss/wildfly/standalone/deployments/ROOT.war
