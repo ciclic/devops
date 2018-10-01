@@ -1,10 +1,11 @@
+FROM maven:3.5-jdk-8-alpine as build
 
-FROM openjdk:8-jdk-alpine
-VOLUME /tmp
-ARG JAVA_OPTS
-ENV JAVA_OPTS=$JAVA_OPTS
-ADD devops.jar devops.jar
-EXPOSE 80
-ENTRYPOINT exec java $JAVA_OPTS -jar devops.jar
-# For Spring-Boot project, use the entrypoint below to reduce Tomcat startup time.
-#ENTRYPOINT exec java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -jar devops.jar
+COPY pom.xml ./
+RUN mvn verify --fail-never
+
+COPY . ./
+RUN mvn package
+
+FROM jboss/wildfly:14.0.1.Final
+
+COPY --from=build target/devops-test-0.0.1-SNAPSHOT.war /opt/jboss/wildfly/standalone/deployments/

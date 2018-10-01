@@ -1,8 +1,9 @@
-version: '2.1'
+version: '3.4'
 
 services:
-  devops:
-    image: devops
+  webapp:
+    image: devops-test
     build: .
     ports:
-      - 80:80
+      - 80:8080
+      - 9990:9990
