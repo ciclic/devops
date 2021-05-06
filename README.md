@@ -27,7 +27,7 @@ https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-
 https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecr-repository.htm
 
 >**Wilton's notes:**
->Não tenho exp. prática em terraform/Cloudformation, Trabalhei mais com Ansible e Chef mas para infra On-Premisses e pontualmente para gestão de configuração do meu ambiente e >automatização de processos de infra e muito no desenvolvimento em shellscript sendo chamado pelo Rundeck, então não ou colocar um código que não é meu para avaliarem meu >conhecimento que não é a realidade, mas fiz um fork no projeto abaixo e testei a implementação abaixo na minha conta AWS e funcionou certinho.
+>Não tenho exp. prática em terraform/Cloudformation, Trabalhei mais com Ansible e Chef mas para infra On-Premisses e pontualmente para gestão de configuração do meu ambiente e automatização de processos de infra e muito no desenvolvimento em shellscript sendo chamado pelo Rundeck, então não ou colocar um código que não é meu para avaliarem meu conhecimento que não é a realidade, mas fiz um fork no projeto abaixo e testei a implementação abaixo na minha conta AWS e funcionou certinho.
 >
 >Terraform-AWS-ECS
 >https://github.com/arminc/terraform-ecs
@@ -41,13 +41,13 @@ Desenhe/descreva um ciclo de CI/CD desde o backlog até o deploy da aplicação,
 
 >**Wilton's notes:**
 >O desenho de um ciclo CI/CD, é como demonstrado nesta imagem. Mas vou falar da minha experiência no ciclo ao invés de pontuar o conceitual do ciclo CI/CD. 
->Minha exp. com CI/CD é mais com o processo de CD e On-Premisses, trabalhava com SOA/Middleware e APIM (Api Management), uma stack bem grande de tecnologias mais focado em >infraestrutura.
+>Minha exp. com CI/CD é mais com o processo de CD e On-Premisses, trabalhava com SOA/Middleware e APIM (Api Management), uma stack bem grande de tecnologias mais focado em infraestrutura.
 >
 >Stack API:
 >ZUP Gateway (Node.Js)
 >Couchbase (NoSQL DB do API Gateway)
 >RabbitMQ (Fila para recebimento dos eventos das reqs do API Gateway)
->Stack Elastic (Logstash (buscar os eventos no Rabbit e mandar para o Elasticsearch), Kibana e Infrastrutura do ElasticSearch), e o gerenciamento dos Logstashs feitos via >Pipeline do Elastic.
+>Stack Elastic (Logstash (buscar os eventos no Rabbit e mandar para o Elasticsearch), Kibana e Infrastrutura do ElasticSearch), e o gerenciamento dos Logstashs feitos via Pipeline do Elastic.
 >Google Apigee 
 >Cassandra como banco NoSQL do Gateway, com sua stack de zookeeper.
 >Apache QPid como fila dos eventos mandando os eventos para o Postgres.
