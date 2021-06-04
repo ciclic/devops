@@ -42,4 +42,4 @@ Desenhe/descreva um ciclo de CI/CD desde o backlog até o deploy da aplicação,
 #Processo de submissão
 
 Fazer um fork desse repositório e nos mandar um pull request.
-Nos dar acesso ao seu repositório no github, bitbucket ou gitlab. Email:tiago@ciclic.com.br
+Nos dar acesso ao seu repositório no github, bitbucket ou gitlab. Email: felipesousa@ciclic.com.br
